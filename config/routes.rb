@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   #TODO: make configurable
-  namespace :api
+  namespace :api do
     constraints Hangar::RouteConstraint.new do
       FactoryGirl.factories.map(&:name).map(&:to_s).map(&:pluralize).map(&:to_sym).each do |factory|
         resources factory, only: [:new, :create], controller: 'hangar/resources'
